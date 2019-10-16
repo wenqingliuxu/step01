@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.user.dao.IUserDao">
+	<resultMap type="com.demo.springboot.user.service.bo.User" id="userResultMap">
+		<id property="id" column="userId" />
+		<result property="userName" column="userName" />
+	</resultMap>
+
+	<sql id="sampleColumns">
+			${alias}.userId,${alias}.userName
+	</sql>
+
+	<insert id="add" >
+		<!--<selectKey order="AFTER" keyProperty="id" resultType="long">
+			SELECT LAST_INSERT_ID()
+		</selectKey>-->
+		insert into users(userId,userName) values (#{id},#{userName,jdbcType=VARCHAR})
+	</insert>
+
+
+<!--	<select id="selectOne" resultMap="sampleResultMap">
+		select
+		<include refid="sampleColumns">
+			<property name="alias" value="t" />
+		</include>
+		from sample t where t.sample_id=#{id}
+	</select>-->
+
+</mapper>
